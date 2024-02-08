@@ -3,12 +3,13 @@ from functools import partial
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
-from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.uix.image import Image
 from kivy.core.window import Window
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
+from kivy.graphics import Color, Rectangle
+from kivy.uix.relativelayout import RelativeLayout
 
 class Game(Screen):
     def __init__(self, **kwargs):
@@ -23,7 +24,7 @@ class Game(Screen):
         background = Image(source='../img/fundo.png', allow_stretch=True, keep_ratio=False)
         layout.add_widget(background)
 
-        # Botão adicionado ao layout
+        # Botão Voltar
         button = Button(text='', 
                         size_hint=(0.12, 0.06), 
                         pos_hint={'center_x': 0.1, 'center_y': 0.95}, 
@@ -31,18 +32,29 @@ class Game(Screen):
                         background_down='../img/seta-voltar.png'
                         )
         
-        # for linha in range(3):
-        #     for coluna in range(3):
-        #         botao = Button(text='', size_hint=(0.01, 0.01), pos_hint={'center_x': 0.8, 'center_y': 0.8})
-        #         layout.add_widget(botao)
+        # Criando a tebela do jogo
+        table_btn = GridLayout(cols=3, size_hint=(None, None), spacing=7, size=(300, 300))
+        table_img = RelativeLayout(size_hint=(None, None), size=(300, 300))
+        table_img_fundo = Image(source='../img/Tabela.png', allow_stretch=True, keep_ratio=False)
+    
+        table_img.pos_hint = {'center_x': 0.5, 'center_y': 0.5}
+            
+        table_img.add_widget(table_img_fundo)
+        table_img.add_widget(table_btn)
+        layout.add_widget(table_img)
+        
+        # Adicionando os botões na tela
+        for linha in range(3):
+            for coluna in range(3):
+                botao = Button(text='Ola', 
+                               font_size=(50),
+                               size_hint=(0.02, 0.02), 
+                               pos_hint={'center_x': 0.8, 'center_y': 0.8},
+                               background_color=(1, 1, 1, 0)) # (1, 1, 1, 1): nâo transparente, (1, 1, 1, 0.5): 50% transparente, (1, 1, 1, 0): Transparente
+                table_btn.add_widget(botao)
         
         layout.add_widget(button)
         self.add_widget(layout)
-        
-        # layout = BoxLayout()
-        # background = Image(source='../img/fundo.png', allow_stretch=True, keep_ratio=False)
-        # layout.add_widget(background)
-        # self.add_widget(layout)
 
     def on_button_press(self, row, col, button):
         if self.board[row][col] == ' ':
