@@ -46,11 +46,12 @@ class Game(Screen):
         # Adicionando os botões na tela
         for linha in range(3):
             for coluna in range(3):
-                botao = Button(text='Ola', 
+                botao = Button(text='', 
                                font_size=(50),
                                size_hint=(0.02, 0.02), 
                                pos_hint={'center_x': 0.8, 'center_y': 0.8},
-                               background_color=(1, 1, 1, 0)) # (1, 1, 1, 1): nâo transparente, (1, 1, 1, 0.5): 50% transparente, (1, 1, 1, 0): Transparente
+                               background_color=(1, 1, 1, 0), # (1, 1, 1, 1): nâo transparente, (1, 1, 1, 0.5): 50% transparente, (1, 1, 1, 0): Transparente
+                               on_press=partial(self.on_button_press, linha, coluna)) 
                 table_btn.add_widget(botao)
         
         layout.add_widget(button)
