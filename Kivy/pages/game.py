@@ -1,8 +1,4 @@
-import kivy
-
-from kivy.app import App
 from kivy.uix.button import Button
-from kivy.uix.gridlayout import GridLayout
 from functools import partial
 from kivy.uix.screenmanager import Screen
 
@@ -10,6 +6,7 @@ from kivy.uix.screenmanager import Screen
 class Game(Screen):
     def __init__(self, **kwargs):
         super(Screen, self).__init__(**kwargs)
+        
         self.cols = 3
         self.buttons = []
         self.current_player = 'X'
