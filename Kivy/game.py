@@ -5,10 +5,12 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.image import Image
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.relativelayout import RelativeLayout
+from kivy.core.window import Window
 
 class Game(Screen):
     def __init__(self, **kwargs):
         super(Screen, self).__init__(**kwargs)
+        Window.size = (430, 932)
 
         self.tabela = [[ " " for _ in range(3)] for _ in range(3)] # Criando o tabuleiro
         self.atual_jogador = 'X'
@@ -20,16 +22,16 @@ class Game(Screen):
         layout.add_widget(background)
 
         # Botão Voltar
-        button = Button(text='', 
-                        size_hint=(0.1, 0.1), 
+        button = Button(size_hint=(None, None), 
                         pos_hint={'center_x': 0.1, 'center_y': 0.95}, 
+                        size=(100, 50),
                         background_normal='seta-voltar.png',
                         background_down='seta-voltar.png'
                         )
         
         # Criando a tebela do jogo
-        table_btn = GridLayout(cols=3, size_hint=(None, None), spacing=7, size=(400, 400))
-        table_img = RelativeLayout(size_hint=(None, None), size=(400, 400))
+        table_btn = GridLayout(cols=3, size_hint=(None, None), spacing=7, size=(800, 800))
+        table_img = RelativeLayout(size_hint=(None, None), size=(800, 800))
         table_img_fundo = Image(source='Tabela.png', allow_stretch=True, keep_ratio=False)
     
         table_img.pos_hint = {'center_x': 0.5, 'center_y': 0.5}

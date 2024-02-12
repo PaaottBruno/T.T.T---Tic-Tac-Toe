@@ -14,7 +14,7 @@ class Home(Screen):
 
 class TicTacToeApp(App):
     def build(self):
-        # Window.size = (430, 932)
+        Window.size = (430, 932)
 
         tela = ScreenManager()
         tela.add_widget(Home(name = "home")) # para adicionar outro tem que: Colocar o nome da class(name = "Nome da classe tbm")
