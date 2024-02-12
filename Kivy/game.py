@@ -104,7 +104,14 @@ class Game(Screen):
             self.popup_reset()
             
         else:
-            print("Deu velha")
+            for linha in self.tabela:
+                for elemento in linha:
+                    if elemento == ' ':      
+                        verificar = False
+                    else: 
+                        verificar = True        
+            if verificar:
+                print("Deu velha")
             
     def popup_reset(self):
         self.btn_reset = Button()
