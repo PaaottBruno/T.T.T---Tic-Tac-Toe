@@ -112,6 +112,7 @@ class Game(Screen):
                         verificar = True        
             if verificar:
                 print("Deu velha")
+                self.popup_reset()
             
     def popup_reset(self):
         self.btn_reset = Button()
