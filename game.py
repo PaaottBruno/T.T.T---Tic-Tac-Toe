@@ -7,7 +7,6 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.relativelayout import RelativeLayout
 from kivy.core.window import Window
 from kivy.uix.label import Label
-from kivy.uix.boxlayout import BoxLayout
 
 class Game(Screen):
     def __init__(self, **kwargs):
@@ -136,8 +135,8 @@ class Game(Screen):
         if ganhador == "X":
             self.mensagem_x = Label(text = "[b]Player 1 Win[b]",
                                     markup=True,
-                                    pos_hint={'center_x': 0.5, 'center_y': 0.8},
-                                    font_size=60)
+                                    pos_hint={'center_x': 0.5, 'center_y': 0.7},
+                                    font_size=80)
             
             self.add_widget(self.mensagem_x)
             self.popup_reset()
@@ -145,27 +144,27 @@ class Game(Screen):
         elif ganhador == "O":
             self.mensagem_o = Label(text = "[b]Player 2 Win[b]",
                                     markup=True,
-                                    pos_hint={'center_x': 0.5, 'center_y': 0.8},
-                                    font_size=60)
+                                    pos_hint={'center_x': 0.5, 'center_y': 0.7},
+                                    font_size=80)
             self.add_widget(self.mensagem_o)
             self.popup_reset()
         
         else:
             self.mensagem_empate = Label(text = "[b]Empate[b]",
                                     markup=True,
-                                    pos_hint={'center_x': 0.5, 'center_y': 0.8},
-                                    font_size=60)
+                                    pos_hint={'center_x': 0.5, 'center_y': 0.7},
+                                    font_size=80)
             self.add_widget(self.mensagem_empate)
             self.popup_reset()
             
     def popup_reset(self):
         
         self.btn_reset = Button(size_hint=(None, None), 
-                        pos_hint={'center_x': 0.5, 'center_y': 0.5}, 
-                        size=(200, 200),
-                        background_normal='seta-reset.png',
-                        background_down='seta-reset.png'
-                        )
+                                pos_hint={'center_x': 0.5, 'center_y': 0.5}, 
+                                size=(200, 200),
+                                background_normal='seta-reset.png',
+                                background_down='seta-reset.png'
+                                )
         self.btn_reset.bind(on_press= self.reset_tabela)
         self.add_widget(self.btn_reset)
         
@@ -202,4 +201,3 @@ class Game(Screen):
     def minimax_move(self):
         # Implement Minimax algorithm to make the computer's move
         pass
-
