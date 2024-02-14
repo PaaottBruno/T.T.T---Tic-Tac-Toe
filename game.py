@@ -12,7 +12,7 @@ class Game(Screen):
     def __init__(self, **kwargs):
         super(Screen, self).__init__(**kwargs)
         
-        Window.size = (430, 932)
+        # Window.size = (430, 932)
 
         self.tabela = [[ " " for _ in range(3)] for _ in range(3)] # Criando o tabuleiro
         self.atual_jogador = 'X'
@@ -25,14 +25,14 @@ class Game(Screen):
 
         # Botão Voltar
         button = Button(size_hint=(None, None), 
-                        pos_hint={'center_x': 0.1, 'center_y': 0.95}, 
-                        size=(100, 50),
+                        pos_hint={'center_x': 0.08, 'center_y': 0.95}, 
+                        size=(120, 85),
                         background_normal='seta-voltar.png',
                         background_down='seta-voltar.png'
                         )
-        
+
         # Placar do jogo
-        container_placar = RelativeLayout(size_hint=(None, None), size=(800, 400))
+        container_placar = RelativeLayout(size_hint=(None, None), size=(800, 300))
 
         placar = Image(source="placar.png",
                         allow_stretch=True, 
@@ -136,7 +136,7 @@ class Game(Screen):
             self.mensagem_x = Label(text = "[b]Player 1 Win[b]",
                                     markup=True,
                                     pos_hint={'center_x': 0.5, 'center_y': 0.7},
-                                    font_size=80)
+                                    font_size=100)
             
             self.add_widget(self.mensagem_x)
             self.popup_reset()
@@ -145,7 +145,7 @@ class Game(Screen):
             self.mensagem_o = Label(text = "[b]Player 2 Win[b]",
                                     markup=True,
                                     pos_hint={'center_x': 0.5, 'center_y': 0.7},
-                                    font_size=80)
+                                    font_size=100)
             self.add_widget(self.mensagem_o)
             self.popup_reset()
         
@@ -153,17 +153,17 @@ class Game(Screen):
             self.mensagem_empate = Label(text = "[b]Empate[b]",
                                     markup=True,
                                     pos_hint={'center_x': 0.5, 'center_y': 0.7},
-                                    font_size=80)
+                                    font_size=100)
             self.add_widget(self.mensagem_empate)
             self.popup_reset()
             
     def popup_reset(self):
         
         self.btn_reset = Button(size_hint=(None, None), 
-                                pos_hint={'center_x': 0.5, 'center_y': 0.5}, 
+                                pos_hint={'center_x': 0.5, 'center_y': 0.6}, 
                                 size=(200, 200),
                                 background_normal='seta-reset.png',
-                                background_down='seta-reset.png'
+                                # background_down='seta-reset.png'
                                 )
         self.btn_reset.bind(on_press= self.reset_tabela)
         self.add_widget(self.btn_reset)
