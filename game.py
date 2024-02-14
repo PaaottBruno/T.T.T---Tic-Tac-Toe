@@ -119,16 +119,13 @@ class Game(Screen):
         elif linha_1_o or linha_2_o or linha_3_o or coluna_1_o or coluna_2_o or coluna_3_o or diagonal_principal_o or diagonal_secundaria_o:
             self.popup_win("O")
             
-        else:
-            for linha in self.tabela:
-                for elemento in linha:
-                    if elemento == ' ':      
-                        verificar = False
-                    else: 
-                        verificar = True        
-            if verificar:
-                self.popup_win(None)
-            
+        if all(all(elemento != ' ' for elemento in linha) for linha in self.tabela) and \
+        not any(all(self.tabela[linha][coluna] == ' ' for coluna in range(3)) for linha in range(3)):
+            self.popup_win(None)
+            return True
+
+        # O jogo ainda não terminou
+        return False
     def popup_win(self, ganhador):
         
         # Parando a funcionalidade dos botões do jogo
