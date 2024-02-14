@@ -16,6 +16,8 @@ class Game(Screen):
 
         self.tabela = [[ " " for _ in range(3)] for _ in range(3)] # Criando o tabuleiro
         self.atual_jogador = 'X'
+        self.pontos_total_x = 0
+        self.pontos_total_o = 0
         
         layout = FloatLayout()
 
@@ -41,7 +43,6 @@ class Game(Screen):
         
         container_placar.pos_hint = {'center_x': 0.5, 'center_y': 0.9}
         
-        container_placar.add_widget(placar)
         
         # Criando a tebela do jogo
         table_btn = GridLayout(cols=3, size_hint=(None, None), spacing=7, size=(800, 800)) # normal 800 cada
@@ -52,6 +53,7 @@ class Game(Screen):
             
         table_img.add_widget(table_img_fundo)
         table_img.add_widget(table_btn)
+        container_placar.add_widget(placar)
         layout.add_widget(table_img)
         layout.add_widget(container_placar)
         
@@ -114,9 +116,11 @@ class Game(Screen):
 
         if linha_1_x or linha_2_x or linha_3_x or coluna_1_x or coluna_2_x or coluna_3_x or diagonal_principal_x or diagonal_secundaria_x:
             self.popup_win("X")
+            self.pontos("X", 1)
             
         elif linha_1_o or linha_2_o or linha_3_o or coluna_1_o or coluna_2_o or coluna_3_o or diagonal_principal_o or diagonal_secundaria_o:
             self.popup_win("O")
+            self.pontos("O", 1)
             
         if all(all(elemento != ' ' for elemento in linha) for linha in self.tabela) and \
         not any(all(self.tabela[linha][coluna] == ' ' for coluna in range(3)) for linha in range(3)):
@@ -195,9 +199,34 @@ class Game(Screen):
             for botao in linha:
                 botao.disabled = False
                 
-    def placar_game(self):
-        pass        
-
+    def pontos(self, jogador, quantidade):
+        
+        if jogador == "X":
+            
+            if hasattr(self, 'player_1'):
+                self.remove_widget(self.player_1) 
+                
+            self.pontos_total_x += quantidade
+            
+            self.player_1 = Label(text=str(self.pontos_total_x),
+                            pos_hint={'center_x': 0.38, 'center_y': 0.95},
+                            font_size=60)
+            
+            self.add_widget(self.player_1)
+            
+        elif jogador == "O":
+            
+            if hasattr(self, 'player_2'):
+                self.remove_widget(self.player_2) 
+                
+            self.pontos_total_o += quantidade
+            
+            self.player_2 = Label(text=str(self.pontos_total_o),
+                            pos_hint={'center_x': 0.62, 'center_y': 0.95},
+                            font_size=60)
+            
+            self.add_widget(self.player_2) 
+        
     def minimax_move(self):
         # Implement Minimax algorithm to make the computer's move
         pass
