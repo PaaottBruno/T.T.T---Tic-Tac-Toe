@@ -139,7 +139,7 @@ class Game(Screen):
         if ganhador == "X":
             self.mensagem_x = Label(text = "[b]Player 1 Win[b]",
                                     markup=True,
-                                    pos_hint={'center_x': 0.5, 'center_y': 0.8},
+                                    pos_hint={'center_x': 0.5, 'center_y': 0.75},
                                     font_size=100)
             
             self.add_widget(self.mensagem_x)
@@ -148,7 +148,7 @@ class Game(Screen):
         elif ganhador == "O":
             self.mensagem_o = Label(text = "[b]Player 2 Win[b]",
                                     markup=True,
-                                    pos_hint={'center_x': 0.5, 'center_y': 0.8},
+                                    pos_hint={'center_x': 0.5, 'center_y': 0.75},
                                     font_size=100)
             self.add_widget(self.mensagem_o)
             self.popup_reset()
@@ -156,7 +156,7 @@ class Game(Screen):
         else:
             self.mensagem_empate = Label(text = "[b]Empate[b]",
                                     markup=True,
-                                    pos_hint={'center_x': 0.5, 'center_y': 0.8},
+                                    pos_hint={'center_x': 0.5, 'center_y': 0.75},
                                     font_size=100)
             self.add_widget(self.mensagem_empate)
             self.popup_reset()
@@ -209,8 +209,9 @@ class Game(Screen):
             self.pontos_total_x += quantidade
             
             self.player_1 = Label(text=str(self.pontos_total_x),
-                            pos_hint={'center_x': 0.38, 'center_y': 0.95},
-                            font_size=60)
+                            pos_hint={'center_x': 0.38, 'center_y': 0.90},
+                            font_size=80,
+                            color=(0, 0, 0, 1))
             
             self.add_widget(self.player_1)
             
@@ -222,8 +223,9 @@ class Game(Screen):
             self.pontos_total_o += quantidade
             
             self.player_2 = Label(text=str(self.pontos_total_o),
-                            pos_hint={'center_x': 0.62, 'center_y': 0.95},
-                            font_size=60)
+                            pos_hint={'center_x': 0.62, 'center_y': 0.90},
+                            font_size=80,
+                            color=(0, 0, 0, 1))
             
             self.add_widget(self.player_2) 
         
