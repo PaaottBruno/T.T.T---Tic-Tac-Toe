@@ -50,7 +50,7 @@ class Game(Screen):
                                font_size=(50),
                                size_hint=(0.02, 0.02), 
                                pos_hint={'center_x': 0.8, 'center_y': 0.8},
-                               background_color=(1, 1, 1, 0.5), # (1, 1, 1, 1): nâo transparente, (1, 1, 1, 0.5): 50% transparente, (1, 1, 1, 0): Transparente
+                               background_color=(1, 1, 1, 0), # (1, 1, 1, 1): nâo transparente, (1, 1, 1, 0.5): 50% transparente, (1, 1, 1, 0): Transparente
                                on_press=partial(self.on_button_press, linha, coluna)) 
                 linha_botoes.append(self.botao)
                 table_btn.add_widget(self.botao)
@@ -115,7 +115,18 @@ class Game(Screen):
                 self.popup_reset()
             
     def popup_reset(self):
-        self.btn_reset = Button()
+        
+        # Parando a funcionalidade dos botões do jogo
+        for linha in self.botoes:
+            for botao in linha:
+                botao.disabled = True
+                
+        self.btn_reset = Button(size_hint=(None, None), 
+                        pos_hint={'center_x': 0.5, 'center_y': 0.5}, 
+                        size=(200, 200),
+                        background_normal='seta-reset.png',
+                        background_down='seta-reset.png'
+                        )
         self.btn_reset.bind(on_press= self.reset_board)
         self.add_widget(self.btn_reset)
         
@@ -127,6 +138,11 @@ class Game(Screen):
         for linha in self.botoes:
             for botao in linha:
                 botao.text = ''
+        
+        # Voltando a funcionalidade dos botões do jogo
+        for linha in self.botoes:
+            for botao in linha:
+                botao.disabled = False
         
     def minimax_move(self):
         # Implement Minimax algorithm to make the computer's move
