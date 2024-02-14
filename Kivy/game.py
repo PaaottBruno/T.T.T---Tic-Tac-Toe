@@ -6,10 +6,12 @@ from kivy.uix.image import Image
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.relativelayout import RelativeLayout
 from kivy.core.window import Window
+from kivy.uix.label import Label
 
 class Game(Screen):
     def __init__(self, **kwargs):
         super(Screen, self).__init__(**kwargs)
+        
         Window.size = (430, 932)
 
         self.tabela = [[ " " for _ in range(3)] for _ in range(3)] # Criando o tabuleiro
@@ -47,7 +49,7 @@ class Game(Screen):
             linha_botoes = []
             for coluna in range(3):
                 self.botao = Button(text='', 
-                               font_size=(50),
+                               font_size=(90),
                                size_hint=(0.02, 0.02), 
                                pos_hint={'center_x': 0.8, 'center_y': 0.8},
                                background_color=(1, 1, 1, 0), # (1, 1, 1, 1): nâo transparente, (1, 1, 1, 0.5): 50% transparente, (1, 1, 1, 0): Transparente
@@ -60,6 +62,7 @@ class Game(Screen):
         self.add_widget(layout)
 
     def on_button_press(self, linha, coluna, button):
+        
         if self.tabela[linha][coluna] == ' ':
             self.tabela[linha][coluna] = self.atual_jogador
             button.text = self.atual_jogador
@@ -71,6 +74,7 @@ class Game(Screen):
                 # self.minimax_move()
 
     def verificar_ganhador(self):
+        
         # X 
         linha_1_x = all(elemento == 'X' for elemento in self.tabela[0])
         linha_2_x = all(elemento == 'X' for elemento in self.tabela[1])
@@ -96,12 +100,10 @@ class Game(Screen):
         diagonal_secundaria_o = all(self.tabela[i][2 - i] == 'O' for i in range(3))
 
         if linha_1_x or linha_2_x or linha_3_x or coluna_1_x or coluna_2_x or coluna_3_x or diagonal_principal_x or diagonal_secundaria_x:
-            print("Ganhou!")
-            self.popup_reset()
+            self.popup_win("X")
             
         elif linha_1_o or linha_2_o or linha_3_o or coluna_1_o or coluna_2_o or coluna_3_o or diagonal_principal_o or diagonal_secundaria_o:
-            print("Ganhou!")
-            self.popup_reset()
+            self.popup_win("O")
             
         else:
             for linha in self.tabela:
@@ -111,29 +113,68 @@ class Game(Screen):
                     else: 
                         verificar = True        
             if verificar:
-                print("Deu velha")
-                self.popup_reset()
+                self.popup_win(None)
             
-    def popup_reset(self):
+    def popup_win(self, ganhador):
         
         # Parando a funcionalidade dos botões do jogo
         for linha in self.botoes:
             for botao in linha:
                 botao.disabled = True
                 
+        if ganhador == "X":
+            self.mensagem_x = Label(text = "[b]Player 1 Win[b]",
+                                    markup=True,
+                                    pos_hint={'center_x': 0.5, 'center_y': 0.8},
+                                    font_size=60)
+            
+            self.add_widget(self.mensagem_x)
+            self.popup_reset()
+            
+        elif ganhador == "O":
+            self.mensagem_o = Label(text = "[b]Player 2 Win[b]",
+                                    markup=True,
+                                    pos_hint={'center_x': 0.5, 'center_y': 0.8},
+                                    font_size=60)
+            self.add_widget(self.mensagem_o)
+            self.popup_reset()
+        
+        else:
+            self.mensagem_empate = Label(text = "[b]Empate[b]",
+                                    markup=True,
+                                    pos_hint={'center_x': 0.5, 'center_y': 0.8},
+                                    font_size=60)
+            self.add_widget(self.mensagem_empate)
+            self.popup_reset()
+            
+    def popup_reset(self):
+        
         self.btn_reset = Button(size_hint=(None, None), 
                         pos_hint={'center_x': 0.5, 'center_y': 0.5}, 
                         size=(200, 200),
                         background_normal='seta-reset.png',
                         background_down='seta-reset.png'
                         )
-        self.btn_reset.bind(on_press= self.reset_board)
+        self.btn_reset.bind(on_press= self.reset_tabela)
         self.add_widget(self.btn_reset)
         
-    def reset_board(self, instancia):
+    def reset_tabela(self, instancia):
+        
         self.tabela = [[ " " for _ in range(3)] for _ in range(3)] # resetando a lista
         self.remove_widget(self.btn_reset) # removendo o botão de reset game
         
+        if hasattr(self, 'mensagem_x'):
+            self.remove_widget(self.mensagem_x)
+            # self.mensagem_x.text = ""  
+
+        if hasattr(self, 'mensagem_o'):
+            self.remove_widget(self.mensagem_o)
+            # self.mensagem_o.text = ""
+            
+        if hasattr(self, 'mensagem_empate'):
+            self.remove_widget(self.mensagem_empate)
+            # self.mensagem_empate.text = ""
+            
         # removendo os simbolos da tabela
         for linha in self.botoes:
             for botao in linha:
