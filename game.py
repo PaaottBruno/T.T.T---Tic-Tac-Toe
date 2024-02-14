@@ -209,7 +209,7 @@ class Game(Screen):
             self.pontos_total_x += quantidade
             
             self.player_1 = Label(text=str(self.pontos_total_x),
-                            pos_hint={'center_x': 0.38, 'center_y': 0.90},
+                            pos_hint={'center_x': 0.41, 'center_y': 0.89},
                             font_size=80,
                             color=(0, 0, 0, 1))
             
@@ -223,7 +223,7 @@ class Game(Screen):
             self.pontos_total_o += quantidade
             
             self.player_2 = Label(text=str(self.pontos_total_o),
-                            pos_hint={'center_x': 0.62, 'center_y': 0.90},
+                            pos_hint={'center_x': 0.57, 'center_y': 0.89},
                             font_size=80,
                             color=(0, 0, 0, 1))
             
