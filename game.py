@@ -7,6 +7,7 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.relativelayout import RelativeLayout
 from kivy.core.window import Window
 from kivy.uix.label import Label
+from kivy.uix.boxlayout import BoxLayout
 
 class Game(Screen):
     def __init__(self, **kwargs):
@@ -31,16 +32,29 @@ class Game(Screen):
                         background_down='seta-voltar.png'
                         )
         
+        # Placar do jogo
+        container_placar = RelativeLayout(size_hint=(None, None), size=(800, 400))
+
+        placar = Image(source="placar.png",
+                        allow_stretch=True, 
+                        keep_ratio=False,
+                        pos_hint={'center_x': 0.52, 'top': 1.0})
+        
+        container_placar.pos_hint = {'center_x': 0.5, 'center_y': 0.9}
+        
+        container_placar.add_widget(placar)
+        
         # Criando a tebela do jogo
-        table_btn = GridLayout(cols=3, size_hint=(None, None), spacing=7, size=(800, 800))
+        table_btn = GridLayout(cols=3, size_hint=(None, None), spacing=7, size=(800, 800)) # normal 800 cada
         table_img = RelativeLayout(size_hint=(None, None), size=(800, 800))
-        table_img_fundo = Image(source='Tabela.png', allow_stretch=True, keep_ratio=False)
+        table_img_fundo = Image(source='tabela.png', allow_stretch=True, keep_ratio=False)
     
         table_img.pos_hint = {'center_x': 0.5, 'center_y': 0.5}
             
         table_img.add_widget(table_img_fundo)
         table_img.add_widget(table_btn)
         layout.add_widget(table_img)
+        layout.add_widget(container_placar)
         
         # Adicionando os botões na tela
         self.botoes = []
@@ -184,7 +198,10 @@ class Game(Screen):
         for linha in self.botoes:
             for botao in linha:
                 botao.disabled = False
-        
+                
+    def placar_game(self):
+        pass        
+
     def minimax_move(self):
         # Implement Minimax algorithm to make the computer's move
         pass
