@@ -10,8 +10,6 @@ from kivy.uix.label import Label
 class Game(Screen):
     def __init__(self, **kwargs):
         super(Screen, self).__init__(**kwargs)
-        
-        # Window.size = (430, 932)
 
         self.tabela = [[ " " for _ in range(3)] for _ in range(3)] # Criando o tabuleiro
         self.atual_jogador = 'X'
@@ -172,7 +170,7 @@ class Game(Screen):
                                 )
         
         self.btn_voltar = Button(size_hint=(None, None), 
-                                pos_hint={'center_x': 0.5, 'center_y': 0.5}, 
+                                pos_hint={'center_x': 0.5, 'center_y': 0.48}, 
                                 size=(200, 90),
                                 background_normal='btn_voltar.png',
                                 background_down='btn_voltar.png'
@@ -219,7 +217,7 @@ class Game(Screen):
             self.pontos_total_x += quantidade
             
             self.player_1 = Label(text=str(self.pontos_total_x),
-                            pos_hint={'center_x': 0.41, 'center_y': 0.85},
+                            pos_hint={'center_x': 0.41, 'center_y': 0.87},
                             font_size=80,
                             color=(0, 0, 0, 1))
             
@@ -233,7 +231,7 @@ class Game(Screen):
             self.pontos_total_o += quantidade
             
             self.player_2 = Label(text=str(self.pontos_total_o),
-                            pos_hint={'center_x': 0.57, 'center_y': 0.85},
+                            pos_hint={'center_x': 0.57, 'center_y': 0.87},
                             font_size=80,
                             color=(0, 0, 0, 1))
             
