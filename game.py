@@ -170,8 +170,17 @@ class Game(Screen):
                                 background_normal='seta-reset.png',
                                 background_down='seta-reset.png'
                                 )
+        
+        self.btn_voltar = Button(size_hint=(None, None), 
+                                pos_hint={'center_x': 0.5, 'center_y': 0.4}, 
+                                size=(200, 80),
+                                background_normal='btn_voltar.png',
+                                background_down='btn_voltar.png'
+                                )
+        
         self.btn_reset.bind(on_press= self.reset_tabela)
         self.add_widget(self.fundo_cinza)
+        self.add_widget(self.btn_voltar)
         self.add_widget(self.btn_reset)
         
     def reset_tabela(self, instancia):
