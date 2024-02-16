@@ -8,6 +8,7 @@ from kivy.uix.button import Button
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.uix.layout import Layout
 from kivy.uix.image import Image
+from kivy.uix.floatlayout import FloatLayout
 
 class Home(Screen):
     
@@ -16,19 +17,26 @@ class Home(Screen):
         Layout = BoxLayout(orientation="vertical")
         tamanho = '80'
         
+        layout = FloatLayout()
+
+        # Imagem de fundo
+        background = Image(source='Página InicialMobile.png', allow_stretch=True, keep_ratio=False)
+        layout.add_widget(background)
+        
+        
+        
+        
         #butons
         self.button_play = Button(text="Play")
         self.button_exit = Button(text="Exit")
         
-        self.add_widget(Layout)
-        
         Layout.add_widget(self.button_play)
         Layout.add_widget(self.button_exit)
         
+        self.add_widget(layout)
         
         
-        background = Image(source='pagina_jogo.png', allow_stretch=True, keep_ratio=False)
-        Layout.add_widget(background)
+     
         
        
       
@@ -50,7 +58,7 @@ class Home(Screen):
     def tela_home(self, instance):
         self.manager.current = "pag_home" 
         
-     
+
 # KV = '''
 # MDScreen:
 
