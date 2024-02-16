@@ -40,7 +40,7 @@ class Game(Screen):
                         keep_ratio=False,
                         pos_hint={'center_x': 0.52, 'top': 1.0})
         
-        container_placar.pos_hint = {'center_x': 0.5, 'center_y': 0.8}
+        container_placar.pos_hint = {'center_x': 0.5, 'center_y': 0.87}
         
         
         # Criando a tebela do jogo
@@ -48,7 +48,7 @@ class Game(Screen):
         table_img = RelativeLayout(size_hint=(None, None), size=(800, 800))
         table_img_fundo = Image(source='tabela.png', allow_stretch=True, keep_ratio=False)
     
-        table_img.pos_hint = {'center_x': 0.5, 'center_y': 0.3}
+        table_img.pos_hint = {'center_x': 0.5, 'center_y': 0.4}
             
         table_img.add_widget(table_img_fundo)
         table_img.add_widget(table_btn)
@@ -65,7 +65,7 @@ class Game(Screen):
                 self.botao = Button(text='', 
                                font_size=(90),
                                size_hint=(0.02, 0.02), 
-                               pos_hint={'center_x': 0.8, 'center_y': 0.6},
+                               pos_hint={'center_x': 0.8, 'center_y': 0.7},
                                background_color=(1, 1, 1, 0), # (1, 1, 1, 1): nâo transparente, (1, 1, 1, 0.5): 50% transparente, (1, 1, 1, 0): Transparente
                                on_press=partial(self.on_button_press, linha, coluna)) 
                 linha_botoes.append(self.botao)
@@ -172,8 +172,8 @@ class Game(Screen):
                                 )
         
         self.btn_voltar = Button(size_hint=(None, None), 
-                                pos_hint={'center_x': 0.5, 'center_y': 0.4}, 
-                                size=(200, 80),
+                                pos_hint={'center_x': 0.5, 'center_y': 0.5}, 
+                                size=(200, 90),
                                 background_normal='btn_voltar.png',
                                 background_down='btn_voltar.png'
                                 )
@@ -186,8 +186,9 @@ class Game(Screen):
     def reset_tabela(self, instancia):
         
         self.tabela = [[ " " for _ in range(3)] for _ in range(3)] # resetando a lista
-        self.remove_widget(self.btn_reset) # removendo o botão de reset game
         self.remove_widget(self.fundo_cinza)
+        self.remove_widget(self.btn_voltar)
+        self.remove_widget(self.btn_reset) # removendo o botão de reset game
         
         if hasattr(self, 'mensagem_x'):
             self.remove_widget(self.mensagem_x)
@@ -218,7 +219,7 @@ class Game(Screen):
             self.pontos_total_x += quantidade
             
             self.player_1 = Label(text=str(self.pontos_total_x),
-                            pos_hint={'center_x': 0.41, 'center_y': 0.69},
+                            pos_hint={'center_x': 0.41, 'center_y': 0.85},
                             font_size=80,
                             color=(0, 0, 0, 1))
             
@@ -232,7 +233,7 @@ class Game(Screen):
             self.pontos_total_o += quantidade
             
             self.player_2 = Label(text=str(self.pontos_total_o),
-                            pos_hint={'center_x': 0.57, 'center_y': 0.69},
+                            pos_hint={'center_x': 0.57, 'center_y': 0.85},
                             font_size=80,
                             color=(0, 0, 0, 1))
             
