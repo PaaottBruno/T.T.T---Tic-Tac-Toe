@@ -5,7 +5,6 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.image import Image
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.relativelayout import RelativeLayout
-from kivy.core.window import Window
 from kivy.uix.label import Label
 
 class Game(Screen):
@@ -41,7 +40,7 @@ class Game(Screen):
                         keep_ratio=False,
                         pos_hint={'center_x': 0.52, 'top': 1.0})
         
-        container_placar.pos_hint = {'center_x': 0.5, 'center_y': 0.9}
+        container_placar.pos_hint = {'center_x': 0.5, 'center_y': 0.8}
         
         
         # Criando a tebela do jogo
@@ -49,7 +48,7 @@ class Game(Screen):
         table_img = RelativeLayout(size_hint=(None, None), size=(800, 800))
         table_img_fundo = Image(source='tabela.png', allow_stretch=True, keep_ratio=False)
     
-        table_img.pos_hint = {'center_x': 0.5, 'center_y': 0.5}
+        table_img.pos_hint = {'center_x': 0.5, 'center_y': 0.3}
             
         table_img.add_widget(table_img_fundo)
         table_img.add_widget(table_btn)
@@ -66,7 +65,7 @@ class Game(Screen):
                 self.botao = Button(text='', 
                                font_size=(90),
                                size_hint=(0.02, 0.02), 
-                               pos_hint={'center_x': 0.8, 'center_y': 0.8},
+                               pos_hint={'center_x': 0.8, 'center_y': 0.6},
                                background_color=(1, 1, 1, 0), # (1, 1, 1, 1): nâo transparente, (1, 1, 1, 0.5): 50% transparente, (1, 1, 1, 0): Transparente
                                on_press=partial(self.on_button_press, linha, coluna)) 
                 linha_botoes.append(self.botao)
@@ -137,57 +136,58 @@ class Game(Screen):
                 botao.disabled = True
                 
         if ganhador == "X":
+            self.popup_reset()
             self.mensagem_x = Label(text = "[b]Player 1 Win[b]",
                                     markup=True,
                                     pos_hint={'center_x': 0.5, 'center_y': 0.75},
                                     font_size=100)
             
             self.add_widget(self.mensagem_x)
-            self.popup_reset()
             
         elif ganhador == "O":
+            self.popup_reset()
             self.mensagem_o = Label(text = "[b]Player 2 Win[b]",
                                     markup=True,
                                     pos_hint={'center_x': 0.5, 'center_y': 0.75},
                                     font_size=100)
             self.add_widget(self.mensagem_o)
-            self.popup_reset()
         
         else:
+            self.popup_reset()
             self.mensagem_empate = Label(text = "[b]Empate[b]",
                                     markup=True,
                                     pos_hint={'center_x': 0.5, 'center_y': 0.75},
                                     font_size=100)
             self.add_widget(self.mensagem_empate)
-            self.popup_reset()
             
     def popup_reset(self):
         
+        self.fundo_cinza = Image(source="fundo_cinza.png", allow_stretch=True, keep_ratio=False)
+
         self.btn_reset = Button(size_hint=(None, None), 
                                 pos_hint={'center_x': 0.5, 'center_y': 0.6}, 
                                 size=(200, 200),
                                 background_normal='seta-reset.png',
-                                # background_down='seta-reset.png'
+                                background_down='seta-reset.png'
                                 )
         self.btn_reset.bind(on_press= self.reset_tabela)
+        self.add_widget(self.fundo_cinza)
         self.add_widget(self.btn_reset)
         
     def reset_tabela(self, instancia):
         
         self.tabela = [[ " " for _ in range(3)] for _ in range(3)] # resetando a lista
         self.remove_widget(self.btn_reset) # removendo o botão de reset game
+        self.remove_widget(self.fundo_cinza)
         
         if hasattr(self, 'mensagem_x'):
             self.remove_widget(self.mensagem_x)
-            # self.mensagem_x.text = ""  
 
         if hasattr(self, 'mensagem_o'):
             self.remove_widget(self.mensagem_o)
-            # self.mensagem_o.text = ""
             
         if hasattr(self, 'mensagem_empate'):
             self.remove_widget(self.mensagem_empate)
-            # self.mensagem_empate.text = ""
             
         # removendo os simbolos da tabela
         for linha in self.botoes:
@@ -209,7 +209,7 @@ class Game(Screen):
             self.pontos_total_x += quantidade
             
             self.player_1 = Label(text=str(self.pontos_total_x),
-                            pos_hint={'center_x': 0.41, 'center_y': 0.89},
+                            pos_hint={'center_x': 0.41, 'center_y': 0.69},
                             font_size=80,
                             color=(0, 0, 0, 1))
             
@@ -223,7 +223,7 @@ class Game(Screen):
             self.pontos_total_o += quantidade
             
             self.player_2 = Label(text=str(self.pontos_total_o),
-                            pos_hint={'center_x': 0.57, 'center_y': 0.89},
+                            pos_hint={'center_x': 0.57, 'center_y': 0.69},
                             font_size=80,
                             color=(0, 0, 0, 1))
             
