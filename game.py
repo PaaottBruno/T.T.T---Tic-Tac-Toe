@@ -170,8 +170,8 @@ class Game(Screen):
                                 )
         
         self.btn_voltar = Button(size_hint=(None, None), 
-                                pos_hint={'center_x': 0.5, 'center_y': 0.48}, 
-                                size=(200, 90),
+                                pos_hint={'center_x': 0.5, 'center_y': 0.45}, 
+                                size=(225, 100),
                                 background_normal='btn_voltar.png',
                                 background_down='btn_voltar.png'
                                 )
@@ -217,7 +217,7 @@ class Game(Screen):
             self.pontos_total_x += quantidade
             
             self.player_1 = Label(text=str(self.pontos_total_x),
-                            pos_hint={'center_x': 0.41, 'center_y': 0.87},
+                            pos_hint={'center_x': 0.41, 'center_y': 0.86},
                             font_size=80,
                             color=(0, 0, 0, 1))
             
@@ -231,7 +231,7 @@ class Game(Screen):
             self.pontos_total_o += quantidade
             
             self.player_2 = Label(text=str(self.pontos_total_o),
-                            pos_hint={'center_x': 0.57, 'center_y': 0.87},
+                            pos_hint={'center_x': 0.57, 'center_y': 0.86},
                             font_size=80,
                             color=(0, 0, 0, 1))
             
