@@ -1,16 +1,10 @@
-from menu import Menu
+from home import Home
 from game import Game
-
+from kivy.uix.floatlayout import FloatLayout
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.core.window import Window
 
-class Home(Screen):
-    def __init__(self, **kwargs):
-        super(Screen, self).__init__(**kwargs)
 
-        # Criar a tela aqui
-        
 
 class TicTacToeApp(App):
     def build(self):
@@ -19,7 +13,10 @@ class TicTacToeApp(App):
         tela = ScreenManager()
         tela.add_widget(Home(name = "home")) # para adicionar outro tem que: Colocar o nome da class(name = "Nome da classe tbm")
         tela.add_widget(Game(name = "game")) # para adicionar outro tem que: Colocar o nome da class(name = "Nome da classe tbm")
-        tela.current = "game"
+        tela.current = "home"
         return tela
     
-TicTacToeApp().run()
+
+    
+if __name__ == "__main__":
+    TicTacToeApp().run()
