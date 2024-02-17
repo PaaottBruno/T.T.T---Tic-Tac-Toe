@@ -42,8 +42,25 @@ class Home(FloatLayout):#FloatLayout
         self.manager.current = "pag_player" 
 
     # DEF DECLARA A PAGINA HOME PARA RODAR NA MAIN.
-    def tela_home(self, instance):
+    def voltar_tela_home(self, instance):
         self.manager.current = "pag_home"    
+        self.attempts = 0
+
+
+    def ir_para_outra_tela(self, instance):
+        self.manager.current = "outra_tela"
+
+
+class OutraTela(Screen):
+    def __init__(self):
+        self.button_voltar = Button(text="Voltar")
+        self.button_voltar.bind(on_press=self.voltar_para_tela_inicio)
+        self.add_widget(self.button_voltar)
+
+    def voltar_para_tela_inicio(self, instance):
+        self.manager.current = 'tela_inicio'
+    
+        
 
 
 
