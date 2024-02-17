@@ -1,6 +1,6 @@
 from home import Home
 from game import Game
-
+from kivy.uix.floatlayout import FloatLayout
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
 
