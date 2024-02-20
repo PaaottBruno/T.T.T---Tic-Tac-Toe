@@ -19,14 +19,14 @@ class Home(Screen):#FloatLayout
                              background_down='img_btnPlay_home.png',
                              size_hint=(None,None),
                              pos_hint={'center_x': 0.5, 'center_y': 0.5},# o size_hint serve para mecher na largura do botão
-                             size=(220, 60))
+                             size=(600, 100))
         button_play.bind(on_press=self.on_button_press_play)  # Adiciona uma função de callback ao pressionar o botão
 
         button_exit = Button(background_normal='img_btnExit_home.png',
                              background_down='img_btnExit_home.png',
                              size_hint=(None,None),
                              pos_hint={'center_x': 0.5, 'center_y': 0.2},
-                             size=(220, 60))
+                             size=(600, 100))
         button_exit.bind(on_press=self.on_button_press_exit)  # Adiciona uma função de callback ao pressionar o botão
         
         layout.add_widget(image_pag_home)
@@ -74,10 +74,3 @@ class OutraTela(Screen):
         
 
 
-
-# class TicTacToeApp(App):
-#     def build(self):
-#         return Home()
-
-# if __name__ == '__main__':
-#     TicTacToeApp().run()
