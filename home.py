@@ -11,7 +11,7 @@ class Home(Screen):#FloatLayout
         
         layout = FloatLayout()
 
-        # Adicionar a imagem de fundo ao layout
+        # Adicionar a imagem de fundo ao layout,  allow_stretch=True, keep_ratio=False
         image_pag_home = Image(source='pagina_inicialMobile.png', allow_stretch=True, keep_ratio=False)
 
         # Adicionar botão de imagem sobre a imagem de fundo
@@ -19,16 +19,14 @@ class Home(Screen):#FloatLayout
                              background_down='img_btnPlay_home.png',
                              size_hint=(None,None),
                              pos_hint={'center_x': 0.5, 'center_y': 0.5},# o size_hint serve para mecher na largura do botão
-                             size=(220, 60)
-                            )
+                             size=(220, 60))
         button_play.bind(on_press=self.on_button_press_play)  # Adiciona uma função de callback ao pressionar o botão
 
         button_exit = Button(background_normal='img_btnExit_home.png',
                              background_down='img_btnExit_home.png',
                              size_hint=(None,None),
                              pos_hint={'center_x': 0.5, 'center_y': 0.2},
-                             size=(220, 60)
-                            )
+                             size=(220, 60))
         button_exit.bind(on_press=self.on_button_press_exit)  # Adiciona uma função de callback ao pressionar o botão
         
         layout.add_widget(image_pag_home)
@@ -37,8 +35,9 @@ class Home(Screen):#FloatLayout
         self.add_widget(layout)
 
     def on_button_press_play(self, instance):
-        self.manager.current = "game" # Tirar depois
-        print('Botão PLay pressionado!')
+        self.manager.current = "home" # Tirar depois
+        self.attempts = 0
+        
         
     def on_button_press_exit(self, instance):
         print('Botão exit pressionado!')
@@ -55,7 +54,7 @@ class Home(Screen):#FloatLayout
 
     # DEF DECLARA A PAGINA HOME PARA RODAR NA MAIN.
     def voltar_tela_home(self, instance):
-        self.manager.current = "pag_home"    
+        self.manager.current = "home"    
         self.attempts = 0
 
 
