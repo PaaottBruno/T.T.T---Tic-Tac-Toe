@@ -8,9 +8,19 @@ from kivy.uix.relativelayout import RelativeLayout
 from kivy.graphics import Line, Color
 from kivy.uix.label import Label
 
+class NamePlayer():
+    def __init__(self):
+        pass
+    def nomes(self, name1, name2):
+        self.name1 = name1
+        self.name2 = name2
+
 class Game(Screen):
     def __init__(self, **kwargs):
         super(Screen, self).__init__(**kwargs)
+        
+        names = NamePlayer()
+        
 
         self.tabela = [[ " " for _ in range(3)] for _ in range(3)] # Criando o tabuleiro
         self.atual_jogador = 'X'
@@ -42,8 +52,8 @@ class Game(Screen):
         
         container_placar.pos_hint = {'center_x': 0.5, 'center_y': 0.87}
         
-        name_player01 = Label(text= f"{self.name_01}")
-        name_player02 = Label(text= f"{self.name_02}")
+        self.player_name_01 = Label(text="", pos_hint={'center_x': 0.17, 'top': 1.25}, font_size=50, color=(0, 0, 0, 1))
+        self.player_name_02 = Label(text="", pos_hint={'center_x': 0.87, 'top': 1.25}, font_size=50, color=(0, 0, 0, 1))
         
         
         # Criando a tebela do jogo
@@ -56,6 +66,8 @@ class Game(Screen):
         table_img.add_widget(table_img_fundo)
         table_img.add_widget(table_btn)
         container_placar.add_widget(placar)
+        container_placar.add_widget(self.player_name_01)
+        container_placar.add_widget(self.player_name_02)
         layout.add_widget(table_img)
         layout.add_widget(container_placar)
         
@@ -77,7 +89,11 @@ class Game(Screen):
         
         layout.add_widget(button)
         self.add_widget(layout)
-        
+    
+    def set_player_names(self, name1, name2):
+        self.player_name_01.text = f"{name1}"
+        self.player_name_02.text = f"{name2}"
+    
     def voltar_menu(self, instance):
         self.manager.current = 'menu'
 
@@ -143,7 +159,7 @@ class Game(Screen):
                 
         if ganhador == "X":
             self.popup_reset()
-            self.mensagem_x = Label(text = "[b]Player 1 Win[b]",
+            self.mensagem_x = Label(text = f"[b]{self.player_name_01.text} Win[b]",
                                     markup=True,
                                     pos_hint={'center_x': 0.5, 'center_y': 0.75},
                                     font_size=100)
@@ -152,7 +168,7 @@ class Game(Screen):
             
         elif ganhador == "O":
             self.popup_reset()
-            self.mensagem_o = Label(text = "[b]Player 2 Win[b]",
+            self.mensagem_o = Label(text = f"[b]{self.player_name_02.text} Win[b]",
                                     markup=True,
                                     pos_hint={'center_x': 0.5, 'center_y': 0.75},
                                     font_size=100)

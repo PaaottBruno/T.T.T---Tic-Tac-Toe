@@ -6,6 +6,8 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.label import Label
 from kivy.graphics import Line, Color
 
+from game import NamePlayer
+
 class Menu(Screen):
     def __init__(self, **kwargs):
         super(Screen, self).__init__(**kwargs)
@@ -39,6 +41,7 @@ class Menu(Screen):
                                        pos_hint={'center_x': 0.5, 'center_y': 0.59},
                                        size=(250, 40), 
                                        background_color=(0, 0, 0, 0))
+        self.text_input_01.bind(text=self.on_text_change)
         layout.add_widget(self.text_input_01)
         
         # Adicionar um TextInput ao layout
@@ -48,6 +51,7 @@ class Menu(Screen):
                                        pos_hint={'center_x': 0.5, 'center_y': 0.47},
                                        size=(250, 40), 
                                        background_color=(0, 0, 0, 0))
+        self.text_input_02.bind(text=self.on_text_change)
         layout.add_widget(self.text_input_02)  
         
         with layout.canvas:
@@ -74,4 +78,11 @@ class Menu(Screen):
         self.manager.current = "home"
 
     def on_button_press_play(self, instance):
+        game_screen = self.manager.get_screen("game")  # Obtém a instância da tela Game
+        game_screen.set_player_names(self.text_input_01.text, self.text_input_02.text)
         self.manager.current = "game"
+        
+    def on_text_change(self, instance, value):
+        # Limitando o número de caracteres a 10
+        if len(value) > 6:
+            instance.text = value[:6]
