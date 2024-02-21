@@ -7,9 +7,11 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.relativelayout import RelativeLayout
 from kivy.uix.label import Label
 
+
 class Game(Screen):
     def __init__(self, **kwargs):
         super(Screen, self).__init__(**kwargs)
+
 
         self.tabela = [[ " " for _ in range(3)] for _ in range(3)] # Criando o tabuleiro
         self.atual_jogador = 'X'
@@ -29,6 +31,7 @@ class Game(Screen):
                         background_normal='seta-voltar.png',
                         background_down='seta-voltar.png'
                         )
+        button.bind(on_press=self.voltar_menu)
 
         # Placar do jogo
         container_placar = RelativeLayout(size_hint=(None, None), size=(800, 300))
@@ -39,6 +42,9 @@ class Game(Screen):
                         pos_hint={'center_x': 0.52, 'top': 1.0})
         
         container_placar.pos_hint = {'center_x': 0.5, 'center_y': 0.87}
+        
+        self.player_name_01 = Label(text="", pos_hint={'center_x': 0.17, 'top': 1.25}, font_size=50, color=(0, 0, 0, 1))
+        self.player_name_02 = Label(text="", pos_hint={'center_x': 0.87, 'top': 1.25}, font_size=50, color=(0, 0, 0, 1))
         
         
         # Criando a tebela do jogo
@@ -51,6 +57,8 @@ class Game(Screen):
         table_img.add_widget(table_img_fundo)
         table_img.add_widget(table_btn)
         container_placar.add_widget(placar)
+        container_placar.add_widget(self.player_name_01)
+        container_placar.add_widget(self.player_name_02)
         layout.add_widget(table_img)
         layout.add_widget(container_placar)
         
@@ -72,6 +80,13 @@ class Game(Screen):
         
         layout.add_widget(button)
         self.add_widget(layout)
+    
+    def set_player_names(self, name1, name2):
+        self.player_name_01.text = f"{name1}"
+        self.player_name_02.text = f"{name2}"
+    
+    def voltar_menu(self, instance):
+        self.manager.current = 'menu'
 
     def on_button_press(self, linha, coluna, button):
         
@@ -135,7 +150,7 @@ class Game(Screen):
                 
         if ganhador == "X":
             self.popup_reset()
-            self.mensagem_x = Label(text = "[b]Player 1 Win[b]",
+            self.mensagem_x = Label(text = f"[b]{self.player_name_01.text} Win[b]",
                                     markup=True,
                                     pos_hint={'center_x': 0.5, 'center_y': 0.75},
                                     font_size=100)
@@ -144,7 +159,7 @@ class Game(Screen):
             
         elif ganhador == "O":
             self.popup_reset()
-            self.mensagem_o = Label(text = "[b]Player 2 Win[b]",
+            self.mensagem_o = Label(text = f"[b]{self.player_name_02.text} Win[b]",
                                     markup=True,
                                     pos_hint={'center_x': 0.5, 'center_y': 0.75},
                                     font_size=100)
@@ -177,6 +192,7 @@ class Game(Screen):
                                 )
         
         self.btn_reset.bind(on_press= self.reset_tabela)
+        self.btn_voltar.bind(on_press= self.voltar_menu)
         self.add_widget(self.fundo_cinza)
         self.add_widget(self.btn_voltar)
         self.add_widget(self.btn_reset)
@@ -240,3 +256,5 @@ class Game(Screen):
     def minimax_move(self):
         # Implement Minimax algorithm to make the computer's move
         pass
+
+    
