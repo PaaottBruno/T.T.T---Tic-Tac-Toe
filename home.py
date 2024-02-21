@@ -3,7 +3,7 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.button import Button
 from kivy.uix.image import Image
 from kivy.uix.label import Label
-from kivy.uix.screenmanager import Screen, ScreenManager
+from kivy.uix.screenmanager import Screen
 
 
 class Home(Screen):#FloatLayout
@@ -43,8 +43,7 @@ class Home(Screen):#FloatLayout
         self.add_widget(layout)
 
     def on_button_press_play(self, instance):
-        self.manager.current = "menu" # Tirar depois
-        # self.attempts = 0
+        self.manager.current = "menu" 
         
         
     # DEF SAIR

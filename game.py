@@ -5,6 +5,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.image import Image
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.relativelayout import RelativeLayout
+from kivy.graphics import Line, Color
 from kivy.uix.label import Label
 
 class Game(Screen):
@@ -29,6 +30,7 @@ class Game(Screen):
                         background_normal='seta-voltar.png',
                         background_down='seta-voltar.png'
                         )
+        button.bind(on_press=self.voltar_menu)
 
         # Placar do jogo
         container_placar = RelativeLayout(size_hint=(None, None), size=(800, 300))
@@ -39,6 +41,9 @@ class Game(Screen):
                         pos_hint={'center_x': 0.52, 'top': 1.0})
         
         container_placar.pos_hint = {'center_x': 0.5, 'center_y': 0.87}
+        
+        name_player01 = Label(text= f"{self.name_01}")
+        name_player02 = Label(text= f"{self.name_02}")
         
         
         # Criando a tebela do jogo
@@ -72,6 +77,9 @@ class Game(Screen):
         
         layout.add_widget(button)
         self.add_widget(layout)
+        
+    def voltar_menu(self, instance):
+        self.manager.current = 'menu'
 
     def on_button_press(self, linha, coluna, button):
         

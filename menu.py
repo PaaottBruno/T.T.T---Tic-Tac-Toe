@@ -1,4 +1,3 @@
-from kivy.app import App
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.button import Button
 from kivy.uix.image import Image
@@ -9,12 +8,8 @@ from kivy.graphics import Line, Color
 
 class Menu(Screen):
     def __init__(self, **kwargs):
-        super(Menu, self).__init__(**kwargs)
+        super(Screen, self).__init__(**kwargs)
 
-        layout = FloatLayout()
-
-        # Adiciona o layout à tela
-        self.add_widget(layout)
         layout = FloatLayout()
 
         # Imagem de fundo
@@ -54,13 +49,15 @@ class Menu(Screen):
                                        size=(250, 40), 
                                        background_color=(0, 0, 0, 0))
         layout.add_widget(self.text_input_02)  
+        
         with layout.canvas:
             Color(0, 0, 0)
             # Adicionando uma linha ao layout
-            line2 = Line(points=[280, 350, 450, 350], width=1,)  # Pontos são coordenadas x, y
-                
+            line1 = Line(points=[280, 278, 450, 278], width=1)  # Pontos são coordenadas x, y
+            
             # Adicionando uma linha ao layout
-            line1 = Line(points=[280, 278, 450, 278], width=1,)  # Pontos são coordenadas x, y
+            line2 = Line(points=[280, 350, 450, 350], width=1)  # Pontos são coordenadas x, y
+                
 
         # Adicionar botão de imagem sobre a imagem de fundo
         btn_play = Button(background_normal='img_btnPlay_home.png',
@@ -78,4 +75,3 @@ class Menu(Screen):
 
     def on_button_press_play(self, instance):
         self.manager.current = "game"
-        self.attempts = 0
