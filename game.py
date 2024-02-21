@@ -192,6 +192,7 @@ class Game(Screen):
                                 )
         
         self.btn_reset.bind(on_press= self.reset_tabela)
+        self.btn_voltar.bind(on_press= self.voltar_menu)
         self.add_widget(self.fundo_cinza)
         self.add_widget(self.btn_voltar)
         self.add_widget(self.btn_reset)
