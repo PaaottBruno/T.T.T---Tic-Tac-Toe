@@ -29,7 +29,8 @@ class Game(Screen):
                         background_normal='seta-voltar.png',
                         background_down='seta-voltar.png'
                         )
-
+        button.bind(on_press=self.on_button_press_voltar)
+        
         # Placar do jogo
         container_placar = RelativeLayout(size_hint=(None, None), size=(800, 300))
 
@@ -72,6 +73,12 @@ class Game(Screen):
         
         layout.add_widget(button)
         self.add_widget(layout)
+
+    #def do botão de seta voltar.
+
+    def on_button_press_voltar(self, instance):
+        self.manager.current = "menu"
+
 
     def on_button_press(self, linha, coluna, button):
         

@@ -1,0 +1,20 @@
+# menu.kv
+<Menu>:
+    FloatLayout:
+        id: layout
+        name_player_1: name_player_1
+        name_player_2: name_player_2
+
+        TextInput:
+            id: name_player_1
+            hint_text: 'Name Player 1'
+            # ... (outros atributos)
+
+        TextInput:
+            id: name_player_2
+            hint_text: 'Name Player 2'
+            # ... (outros atributos)
+
+        Button:
+            text: 'Play'
+            on_press: root.on_button_press_play()

@@ -15,10 +15,10 @@ class Home(Screen):#FloatLayout
         # Adicionar a imagem de fundo ao layout,  allow_stretch=True, keep_ratio=False
         image_pag_home = Image(source='img_pagHome_label.png', allow_stretch=True, keep_ratio=False)
 
-        titulo_game = Label(text='Tic tac Toe', font_size=24)
+        # titulo_game = Label(text='Tic tac Toe', font_size=24)
 
         # Adicionar o Label ao layout
-        layout.add_widget(titulo_game)
+        # layout.add_widget(titulo_game)
 
         
 
@@ -43,8 +43,8 @@ class Home(Screen):#FloatLayout
         self.add_widget(layout)
 
     def on_button_press_play(self, instance):
-        self.manager.current = "menu" # Tirar depois
-        # self.attempts = 0
+        self.manager.current = "menu" 
+        
         
         
     # DEF SAIR
