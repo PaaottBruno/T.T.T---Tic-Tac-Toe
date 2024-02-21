@@ -15,7 +15,7 @@ class TicTacToeApp(App):
         tela.add_widget(Home(name = "home")) # para adicionar outro tem que: Colocar o nome da class(name = "Nome da classe tbm")
         tela.add_widget(Game(name = "game"))
         tela.add_widget(Menu(name = "menu")) # para adicionar outro tem que: Colocar o nome da class(name = "Nome da classe tbm")
-        tela.current = "home"
+        tela.current = "menu"
         
        
         return tela
