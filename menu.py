@@ -6,14 +6,6 @@ from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.uix.textinput import TextInput
 
 
-from kivy.lang import Builder
-from kivymd.app import MDApp
-from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.uix.textfield import MDTextField
-
-
-
-
 class Menu(Screen):
     def __init__(self, **kwargs):
         super(Menu, self).__init__(**kwargs)
