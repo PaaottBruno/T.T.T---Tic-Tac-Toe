@@ -6,8 +6,6 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.label import Label
 from kivy.graphics import Line, Color
 
-from game import NamePlayer
-
 class Menu(Screen):
     def __init__(self, **kwargs):
         super(Screen, self).__init__(**kwargs)

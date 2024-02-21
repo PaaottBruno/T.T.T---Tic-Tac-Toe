@@ -5,22 +5,13 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.image import Image
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.relativelayout import RelativeLayout
-from kivy.graphics import Line, Color
 from kivy.uix.label import Label
 
-class NamePlayer():
-    def __init__(self):
-        pass
-    def nomes(self, name1, name2):
-        self.name1 = name1
-        self.name2 = name2
 
 class Game(Screen):
     def __init__(self, **kwargs):
         super(Screen, self).__init__(**kwargs)
-        
-        names = NamePlayer()
-        
+
 
         self.tabela = [[ " " for _ in range(3)] for _ in range(3)] # Criando o tabuleiro
         self.atual_jogador = 'X'
