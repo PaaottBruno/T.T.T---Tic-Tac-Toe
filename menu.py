@@ -13,7 +13,7 @@ class Menu(Screen):
         layout = FloatLayout()
 
         # Imagem de fundo
-        background = Image(source='pagina_inicialMobile.png', allow_stretch=True, keep_ratio=False)
+        background = Image(source='fundo_input_linha.png', allow_stretch=True, keep_ratio=False)
         layout.add_widget(background)
         
         # Botão voltar
@@ -28,7 +28,7 @@ class Menu(Screen):
         # Titulo da pagina
         msg_ajuda = Label(text = "[b]Escolha seu proprio nome[b]",
                           markup=True,
-                          pos_hint={'center_x': 0.5, 'center_y': 0.70},
+                          pos_hint={'center_x': 0.5, 'center_y': 0.80},
                           font_size=90)
         layout.add_widget(msg_ajuda)
         
@@ -36,8 +36,8 @@ class Menu(Screen):
         self.text_input_01 = TextInput(multiline=False, 
                                        hint_text='Name Player 1',
                                        size_hint=(None, None),
-                                       pos_hint={'center_x': 0.5, 'center_y': 0.59},
-                                       size=(250, 40), 
+                                       pos_hint={'center_x': 0.40, 'center_y': 0.63},
+                                       size=(400, 50), 
                                        background_color=(0, 0, 0, 0))
         self.text_input_01.bind(text=self.on_text_change)
         layout.add_widget(self.text_input_01)
@@ -46,21 +46,12 @@ class Menu(Screen):
         self.text_input_02 = TextInput(multiline=False, 
                                        hint_text='Name Player 2',
                                        size_hint=(None,None),
-                                       pos_hint={'center_x': 0.5, 'center_y': 0.47},
-                                       size=(250, 40), 
+                                       pos_hint={'center_x': 0.40, 'center_y': 0.50},
+                                       size=(400, 50), 
                                        background_color=(0, 0, 0, 0))
         self.text_input_02.bind(text=self.on_text_change)
         layout.add_widget(self.text_input_02)  
         
-        with layout.canvas:
-            Color(0, 0, 0)
-            # Adicionando uma linha ao layout
-            line1 = Line(points=[280, 278, 450, 278], width=1)  # Pontos são coordenadas x, y
-            
-            # Adicionando uma linha ao layout
-            line2 = Line(points=[280, 350, 450, 350], width=1)  # Pontos são coordenadas x, y
-                
-
         # Adicionar botão de imagem sobre a imagem de fundo
         btn_play = Button(background_normal='img_btnPlay_home.png',
                              background_down='img_btnPlay_home.png',

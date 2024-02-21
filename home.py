@@ -20,21 +20,19 @@ class Home(Screen):#FloatLayout
         # Adicionar o Label ao layout
         layout.add_widget(titulo_game)
 
-        
-
         # Adicionar botão de imagem sobre a imagem de fundo
-        button_play = Button(background_normal='img_btnPlay_home.png',
-                             background_down='img_btnPlay_home.png',
+        button_play = Button(background_normal='btn_play.png',
+                             background_down='btn_play.png',
                              size_hint=(None,None),
-                             pos_hint={'center_x': 0.5, 'center_y': 0.5},# o size_hint serve para mecher na largura do botão
-                             size=(600, 100))
+                             pos_hint={'center_x': 0.5, 'center_y': 0.43},# o size_hint serve para mecher na largura do botão
+                             size=(500, 120))
         button_play.bind(on_press=self.on_button_press_play)  # Adiciona uma função de callback ao pressionar o botão
 
-        button_exit = Button(background_normal='img_btnExit_home.png',
-                             background_down='img_btnExit_home.png',
+        button_exit = Button(background_normal='btn_exit.png',
+                             background_down='btn_exit.png',
                              size_hint=(None,None),
-                             pos_hint={'center_x': 0.5, 'center_y': 0.2},
-                             size=(600, 100))
+                             pos_hint={'center_x': 0.5, 'center_y': 0.29},
+                             size=(500, 120))
         button_exit.bind(on_press=self.on_button_press_exit)  # Adiciona uma função de callback ao pressionar o botão
         
         layout.add_widget(image_pag_home)
@@ -44,7 +42,6 @@ class Home(Screen):#FloatLayout
 
     def on_button_press_play(self, instance):
         self.manager.current = "menu" 
-        
         
     # DEF SAIR
     def on_button_press_exit(self, instance):
